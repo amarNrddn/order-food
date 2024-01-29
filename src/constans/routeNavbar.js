@@ -5,7 +5,7 @@ export const navbar = [
     },
     {
         name: "Home",
-        path: "/home"
+        path: "/"
     },
     {
         name: "Menu",

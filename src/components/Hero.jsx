@@ -5,7 +5,7 @@ import { IoArrowForwardCircleOutline } from "react-icons/io5";
 
 const Hero = () => {
     return (
-        <section className='hero'>
+        <section className='hero mt-4'>
             <div className="py-12">
                 <h1
                     className='text-4xl font-semibold'
