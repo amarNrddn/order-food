@@ -1,19 +1,49 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
+    const [form, setForm] = useState({
+        email: '',
+        password: ''
+    })
+
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = async () => {
+        fetch('/api/registers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        })
+    }
+    
     return (
         <section className='text-center mt-8'>
             <h1 className='text-4xl text-primary font-bold mb-4'>Register</h1>
-            <form className='max-w-xl mx-auto' action="">
-                <input type="email" placeholder='Email' />
-                <input type="password" placeholder='Password' />
-                <button type={"submit"}>Register</button>
+            <form className='max-w-xl mx-auto' >
+                <input
+                    name='email'
+                    value={form.email}
+                    type="email"
+                    placeholder='Email'
+                    onChange={handleChange}
+                />
+                <input
+                    name='password'
+                    value={form.password}
+                    type="password"
+                    placeholder='Password'
+                    onChange={handleChange}
+                />
+                <button type={"submit"} onClick={handleSubmit}>Register</button>
                 <div className="my-4 text-gray-500 text-center">
                     Or Login with Provider
                 </div>
                 <button className='flex justify-center items-center gap-2'>
-                    < FcGoogle className='text-2xl'/>
+                    < FcGoogle className='text-2xl' />
                     Login with Google
                 </button>
             </form>
