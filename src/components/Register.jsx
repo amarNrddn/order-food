@@ -12,18 +12,26 @@ const Register = () => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = async () => {
-        fetch('/api/registers', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
+    const handleSubmit = () => {
+        return new promise((succes, failed) => {
+            if (StatusCode === 200) {
+                succes(
+                    fetch('/api/registers', {
+                        method: 'POST',
+                        body: JSON.stringify({ email, password }),
+                        headers: { 'Content-Type': 'application/json' },
+                    })
+
+                )
+            }
+            failed('asdkjad')
         })
     }
-    
+
     return (
         <section className='text-center mt-8'>
             <h1 className='text-4xl text-primary font-bold mb-4'>Register</h1>
-            <form className='max-w-xl mx-auto' >
+            <form className='max-w-xl mx-auto' method='post' onSubmit={handleSubmit}>
                 <input
                     name='email'
                     value={form.email}
@@ -38,7 +46,7 @@ const Register = () => {
                     placeholder='Password'
                     onChange={handleChange}
                 />
-                <button type={"submit"} onClick={handleSubmit}>Register</button>
+                <button type="submit" >Register</button>
                 <div className="my-4 text-gray-500 text-center">
                     Or Login with Provider
                 </div>
