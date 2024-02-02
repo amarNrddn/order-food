@@ -13,18 +13,10 @@ const Register = () => {
     }
 
     const handleSubmit = () => {
-        return new promise((succes, failed) => {
-            if (StatusCode === 200) {
-                succes(
-                    fetch('/api/registers', {
-                        method: 'POST',
-                        body: JSON.stringify({ email, password }),
-                        headers: { 'Content-Type': 'application/json' },
-                    })
-
-                )
-            }
-            failed('asdkjad')
+        fetch('/api/registers', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+            headers: { 'Content-Type': 'application/json' },
         })
     }
 
