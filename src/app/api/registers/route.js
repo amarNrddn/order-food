@@ -1,12 +1,8 @@
 import { User } from "@/models/Users"
 
-export const createUser = async (req, res) => {
-    const { email, password } = req.body
+export const createUser = async (req) => {
+    const body = await req.body.json()
 
-    const response = await User.create({ email, password })
-
-    res.status(201).json({
-        message: 'ok',
-        data: response
-    })
+    const createdUser = await User.create(body);
+    return Response.json(createdUser);  
 }
